@@ -1,0 +1,3 @@
+account requisite pam_exec.so quiet type=account /usr/local/libexec/guest-user-home-setup.sh
+session required  pam_exec.so quiet type=open_session /usr/local/libexec/guest-user-home-setup.sh
+session optional  pam_exec.so quiet type=close_session /usr/local/libexec/guest-user-home-setup.sh
