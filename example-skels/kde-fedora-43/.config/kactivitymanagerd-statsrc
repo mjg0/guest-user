@@ -1,0 +1,5 @@
+[Favorites-org.kde.plasma.kickoff.favorites.instance-3-9e15e873-5d74-4f83-96c4-fcd525c9ef7b]
+ordering=preferred://browser,applications:org.kde.dolphin.desktop,applications:libreoffice-writer.desktop,applications:libreoffice-calc.desktop
+
+[Favorites-org.kde.plasma.kickoff.favorites.instance-3-global]
+ordering=preferred://browser,applications:org.kde.dolphin.desktop,applications:libreoffice-writer.desktop,applications:libreoffice-calc.desktop
