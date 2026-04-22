@@ -15,9 +15,9 @@ log() {
     logger -t guest-user-home -- "$*"
 }
 
-# Ensure only one session at a time
 case "$PAM_TYPE" in
 account)
+    # Ensure only one session at a time
     log "Ensuring this is the only session for $GUEST_USER"
     if loginctl list-sessions --no-legend | awk '{print $3}' | grep -qx "$GUEST_USER"; then
         log "Denied second concurrent login for $GUEST_USER"
@@ -25,9 +25,8 @@ account)
     fi
     ;;
 
-# Create the home directory
 open_session)
-    # Start with a fresh home directory
+    # Create the home directory
     mkdir -p "$GUEST_HOME"
     if mountpoint -q "$GUEST_HOME"; then
         log "Cleaning up old $GUEST_USER home $GUEST_HOME"
@@ -45,6 +44,11 @@ open_session)
     chown -R "$GUEST_USER:$GUEST_USER" "$GUEST_HOME"
 
     log "Set up ephemeral home for $GUEST_USER at $GUEST_HOME"
+    ;;
+
+close_session)
+    # Wipe the home directory
+    umount -l "$GUEST_HOME" || true
     ;;
 
 esac
